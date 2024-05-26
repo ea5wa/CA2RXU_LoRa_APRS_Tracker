@@ -105,7 +105,10 @@ void Configuration::readFile(fs::FS &fs, const char *fileName) {
     bluetoothActive               = data["other"]["bluetoothActive"].as<bool>();
     disableGPS                    = data["other"]["disableGPS"].as<bool>();
     doubleTx                      = data["other"]["doubleTx"].as<bool>();
-
+    tx1freq                       = data["other"]["tx1freq"].as<long>();
+    tx2freq                       = data["other"]["tx2freq"].as<long>();
+    
+    
     configFile.close();
 }
 

@@ -95,10 +95,10 @@ namespace KEYBOARD_Utils {
             }
         } 
 
-        else if (menuDisplay >= 20 && menuDisplay <= 27) {
+        else if (menuDisplay >= 20 && menuDisplay <= 28) {
             menuDisplay--;
             if (menuDisplay < 20) {
-                menuDisplay = 27;
+                menuDisplay = 28;
             }
         } else if (menuDisplay >= 220 && menuDisplay <= 221) {
             menuDisplay--;
@@ -195,9 +195,9 @@ namespace KEYBOARD_Utils {
             menuDisplay = 11;
         } 
         
-        else if (menuDisplay >= 20 && menuDisplay <= 27) {
+        else if (menuDisplay >= 20 && menuDisplay <= 28) {
         menuDisplay++;
-        if (menuDisplay > 27) {
+        if (menuDisplay > 28) {
             menuDisplay = 20;
         }
         } else if (menuDisplay >= 220 && menuDisplay <= 221) {
@@ -335,7 +335,7 @@ namespace KEYBOARD_Utils {
             if (menuDisplay == 200) {
                 menuDisplay = 20;
             }
-        } else if ((menuDisplay >= 1 && menuDisplay <= 3) || (menuDisplay >= 11 &&menuDisplay <= 13) || (menuDisplay >= 20 && menuDisplay <= 27) || (menuDisplay >= 30 && menuDisplay <= 31)) {
+        } else if ((menuDisplay >= 1 && menuDisplay <= 3) || (menuDisplay >= 11 &&menuDisplay <= 13) || (menuDisplay >= 20 && menuDisplay <= 28) || (menuDisplay >= 30 && menuDisplay <= 31)) {
             menuDisplay = menuDisplay * 10;
         } else if (menuDisplay == 10) {
             MSG_Utils::loadMessagesFromMemory(0);

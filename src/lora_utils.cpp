@@ -45,6 +45,7 @@ namespace LoRa_Utils {
 
         float freq = (float)currentLoRaType->frequency/1000000;
         
+        
         radio.setFrequency(freq);
         radio.setSpreadingFactor(currentLoRaType->spreadingFactor);
         float signalBandwidth = currentLoRaType->signalBandwidth/1000;
@@ -128,6 +129,9 @@ namespace LoRa_Utils {
         /*logger.log(logging::LoggerLevel::LOGGER_LEVEL_WARN, "LoRa","Send data: %s", newPacket.c_str());
         logger.log(logging::LoggerLevel::LOGGER_LEVEL_ERROR, "LoRa","Send data: %s", newPacket.c_str());
         logger.log(logging::LoggerLevel::LOGGER_LEVEL_DEBUG, "LoRa","Send data: %s", newPacket.c_str());*/
+        
+        float freq1 = (float)Config.tx1freq/1000000;
+        float freq2 = (float)Config.tx2freq/1000000;
 
         if (Config.ptt.active) {
             digitalWrite(Config.ptt.io_pin, Config.ptt.reverse ? LOW : HIGH);
@@ -137,7 +141,8 @@ namespace LoRa_Utils {
         if (Config.notification.buzzerActive && Config.notification.txBeep) NOTIFICATION_Utils::beaconTxBeep();
         
         
-        show_display("PACKET:", "", newPacket,1000);                
+        /* show_display("PACKET:", "", newPacket,1000);                
+        para ver que es el mismo packet que vamos a emitir*/
         int state = (0000);
         float freq = (float)currentLoRaType->frequency/1000000;
 
@@ -147,7 +152,7 @@ namespace LoRa_Utils {
         show_display("<<< TX >>>", "", newPacket,1000);                
         transmitFlag = true;
         if (state0 == RADIOLIB_ERR_NONE) {
-            //Serial.println(F("success!"));
+        Serial.println(F("success DFLT !"));
         } else {
             Serial.print(F("failed, code "));
             Serial.println(state);
@@ -155,30 +160,25 @@ namespace LoRa_Utils {
         }
         
         if (Config.doubleTx) {
-        /*FREQ 1*/
-        float freq1 = (float)433775000/1000000;
-        radio.setFrequency(freq1);      
-        show_display("<<< TX >>>", "< DUAL 1 >", newPacket,1000);                
+        radio.setFrequency(freq1);
+        show_display("<<< TX >>>", "<DOUBLE 1>", newPacket,1000);                
         int state1 = radio.transmit("\x3c\xff\x01" + newPacket);
         transmitFlag = true;
         if (state1 == RADIOLIB_ERR_NONE) {
-            //Serial.println(F("success!"));
+        Serial.println(F("success TX 1 !"));
         } else {
             Serial.print(F("failed, code "));
             Serial.println(state);
         }
-         show_display("<<< TX >>>", "< DUAL 2 >", newPacket,1000);                
-        /* TEST doble frecuencia empieza aqui seguna freq  */       
-        float freq2 = (float)439912500/1000000;
+         show_display("<<< TX >>>", "<DOUBLE 2>", newPacket,1000);                
         radio.setFrequency(freq2); 
-                int state2 = radio.transmit("\x3c\xff\x01" + newPacket);
+        int state2 = radio.transmit("\x3c\xff\x01" + newPacket);
         transmitFlag = true;
         if (state2 == RADIOLIB_ERR_NONE) {
-            //Serial.println(F("success!"));
+        Serial.println(F("success TX 2 !"));
         } else {
             Serial.print(F("failed, code "));
             Serial.println(state);
-        
         }
         }
         
