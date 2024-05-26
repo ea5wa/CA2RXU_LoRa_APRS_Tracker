@@ -70,6 +70,7 @@ public:
     long  signalBandwidth;
     int   codingRate4;
     int   power;
+
 };
 
 class Ptt {
@@ -105,6 +106,8 @@ public:
     bool    bluetoothActive;
     bool    disableGPS;
     bool    doubleTx;
+    int     tx1freq;
+    int     tx2freq;
     
     Configuration();
     bool validateConfigFile(const String& currentBeaconCallsign);
