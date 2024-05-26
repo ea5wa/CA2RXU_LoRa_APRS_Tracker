@@ -195,7 +195,7 @@ namespace MENU_Utils {
 
 //////////            
             case 20:    // 2.Configuration ---> Callsign
-                show_display("_CONFIG___", "  DOUBLE: (" + checkProcessActive(Config.doubleTx) + ")", "> Change Callsign ", "  Change Frequency", "  Display",lastLine);
+                show_display("_CONFIG___", "  Double TX: (" + checkProcessActive(Config.doubleTx) + ")", "> Change Callsign ", "  Change Frequency", "  Display",lastLine);
                 break;
             case 21:    // 2.Configuration ---> Change Freq
                 show_display("_CONFIG___", "  Change Callsign ", "> Change Frequency", "  Display", "  " + checkBTType() + " (" + checkProcessActive(bluetoothActive) + ")",lastLine);
@@ -216,10 +216,10 @@ namespace MENU_Utils {
                 show_display("_CONFIG___", "  Notifications", "> Reboot", "  Power Off", "  DOUBLE: (" + checkProcessActive(Config.doubleTx) + ")",lastLine);
                 break;
             case 27:    // 2.Configuration ---> Power Off
-                show_display("_CONFIG___", "  Reboot", "> Power Off", "  DOUBLE: (" + checkProcessActive(Config.doubleTx) + ")", "  Change Callsign",lastLine);
+                show_display("_CONFIG___", "  Reboot", "> Power Off", "  Double TX: (" + checkProcessActive(Config.doubleTx) + ")", "  Change Callsign",lastLine);
                 break;
             case 28:    // 2.Configuration ---> Double
-                show_display("_CONFIG___", "  Power Off", "> DOUBLE: (" + checkProcessActive(Config.doubleTx) + ")", "  Change Callsign ","  Change Frecuency", lastLine);
+                show_display("_CONFIG___", "  Power Off", "> Double TX: (" + checkProcessActive(Config.doubleTx) + ")", "  Change Callsign ","  Change Frecuency", lastLine);
                 break;
 
 

@@ -141,7 +141,8 @@ namespace LoRa_Utils {
         if (Config.notification.buzzerActive && Config.notification.txBeep) NOTIFICATION_Utils::beaconTxBeep();
         
         
-        show_display("PACKET:", "", newPacket,1000);                
+        /* show_display("PACKET:", "", newPacket,1000);                
+        para ver que es el mismo packet que vamos a emitir*/
         int state = (0000);
         float freq = (float)currentLoRaType->frequency/1000000;
 
@@ -151,7 +152,7 @@ namespace LoRa_Utils {
         show_display("<<< TX >>>", "", newPacket,1000);                
         transmitFlag = true;
         if (state0 == RADIOLIB_ERR_NONE) {
-            //Serial.println(F("success!"));
+        Serial.println(F("success DFLT !"));
         } else {
             Serial.print(F("failed, code "));
             Serial.println(state);
@@ -159,31 +160,25 @@ namespace LoRa_Utils {
         }
         
         if (Config.doubleTx) {
-        /*FREQ 1*/
-        /*float freq1 = (float)txfreq1/1000000;*/
-        
         radio.setFrequency(freq1);
-        show_display("<<< TX >>>", "< DUAL 1 >", newPacket,1000);                
+        show_display("<<< TX >>>", "<DOUBLE 1>", newPacket,1000);                
         int state1 = radio.transmit("\x3c\xff\x01" + newPacket);
         transmitFlag = true;
         if (state1 == RADIOLIB_ERR_NONE) {
-            //Serial.println(F("success TX1!"));
+        Serial.println(F("success TX 1 !"));
         } else {
             Serial.print(F("failed, code "));
             Serial.println(state);
         }
-         show_display("<<< TX >>>", "< DUAL 2 >", newPacket,1000);                
-        /* TEST doble frecuencia empieza aqui seguna freq  */       
-        
+         show_display("<<< TX >>>", "<DOUBLE 2>", newPacket,1000);                
         radio.setFrequency(freq2); 
         int state2 = radio.transmit("\x3c\xff\x01" + newPacket);
         transmitFlag = true;
         if (state2 == RADIOLIB_ERR_NONE) {
-            //Serial.println(F("success TX2!"));
+        Serial.println(F("success TX 2 !"));
         } else {
             Serial.print(F("failed, code "));
             Serial.println(state);
-        
         }
         }
         
