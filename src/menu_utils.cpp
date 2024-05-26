@@ -33,6 +33,8 @@ extern bool                 displayEcoMode;
 extern bool                 screenBrightness;
 extern bool                 disableGPS;
 extern APRSPacket           lastReceivedPacket;
+extern bool                 doubleTx;
+
 
 extern uint8_t              winlinkStatus;
 extern String               winlinkMailNumber;
@@ -193,7 +195,7 @@ namespace MENU_Utils {
 
 //////////            
             case 20:    // 2.Configuration ---> Callsign
-                show_display("_CONFIG___", "  Power Off", "> Change Callsign ", "  Change Frequency", "  Display",lastLine);
+                show_display("_CONFIG___", "  DOUBLE: (" + checkProcessActive(Config.doubleTx) + ")", "> Change Callsign ", "  Change Frequency", "  Display",lastLine);
                 break;
             case 21:    // 2.Configuration ---> Change Freq
                 show_display("_CONFIG___", "  Change Callsign ", "> Change Frequency", "  Display", "  " + checkBTType() + " (" + checkProcessActive(bluetoothActive) + ")",lastLine);
@@ -211,10 +213,13 @@ namespace MENU_Utils {
                 show_display("_CONFIG___", "  Status", "> Notifications", "  Reboot", "  Power Off",lastLine);
                 break;
             case 26:    // 2.Configuration ---> Reboot
-                show_display("_CONFIG___", "  Notifications", "> Reboot", "  Power Off", "  Change Callsign",lastLine);
+                show_display("_CONFIG___", "  Notifications", "> Reboot", "  Power Off", "  DOUBLE: (" + checkProcessActive(Config.doubleTx) + ")",lastLine);
                 break;
             case 27:    // 2.Configuration ---> Power Off
-                show_display("_CONFIG___", "  Reboot", "> Power Off", "  Change Callsign", "  Change Frequency",lastLine);
+                show_display("_CONFIG___", "  Reboot", "> Power Off", "  DOUBLE: (" + checkProcessActive(Config.doubleTx) + ")", "  Change Callsign",lastLine);
+                break;
+            case 28:    // 2.Configuration ---> Double
+                show_display("_CONFIG___", "  Power Off", "> DOUBLE: (" + checkProcessActive(Config.doubleTx) + ")", "  Change Callsign ","  Change Frecuency", lastLine);
                 break;
 
 
@@ -275,7 +280,17 @@ namespace MENU_Utils {
                 }
                 break;
 
-//////////
+            case 280: // 2.Configuration ---> Double
+                if (Config.doubleTx) {
+                    Config.doubleTx = false;
+                    show_display("DOUBLE", "", " TX --> OFF", 1000);
+                } else {
+                    Config.doubleTx = true;
+                    show_display("DOUBLE", "", " TX --> ON", 1000);
+                }
+                menuDisplay = 28;
+                break;
+
             case 30:    //3.Stations ---> Packet Decoder
                 show_display("STATIONS>", "", "> Packet Decoder", "  Near By Stations", "", "<Back");
                 break;
