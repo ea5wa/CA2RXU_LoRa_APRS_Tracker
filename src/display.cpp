@@ -50,13 +50,13 @@ extern Beacon           *currentBeacon;
 extern int              menuDisplay;
 extern bool             bluetoothConnected;
 
-const char* symbolArray[]     = { "[", ">", "j", "b", "<", "s", "u", "R", "v", "(", ";", "-", "k",
-                                "C", "a", "Y", "O", "'", "=", "y"};
+const char* symbolArray[]     = { "[", ">", "J", "b", "<", "s", "u", "R", "v", "(", ";", "-", "k",
+                                "C", "a", "Y", "O", "'", "=", "y","p","h","j","F","U"};
 int   symbolArraySize         = sizeof(symbolArray)/sizeof(symbolArray[0]);
 const uint8_t *symbolsAPRS[]  = {runnerSymbol, carSymbol, jeepSymbol, bikeSymbol, motorcycleSymbol, shipSymbol, 
                                 truck18Symbol, recreationalVehicleSymbol, vanSymbol, carsateliteSymbol, tentSymbol,
                                 houseSymbol, truckSymbol, canoeSymbol, ambulanceSymbol, yatchSymbol, baloonSymbol,
-                                aircraftSymbol, trainSymbol, yagiSymbol};
+                                aircraftSymbol, trainSymbol, yagiSymbol, dogSymbol, superSymbol,craneSymbol,tractorSymbol,busSymbol};
 // T-Beams bought with soldered OLED Screen comes with only 4 pins (VCC, GND, SDA, SCL)
 // If your board didn't come with 4 pins OLED Screen and comes with 5 and one of them is RST...
 // Uncomment Next Line (Remember ONLY if your OLED Screen has a RST pin). This is to avoid memory issues.
