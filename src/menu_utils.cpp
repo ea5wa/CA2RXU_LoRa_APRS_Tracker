@@ -543,12 +543,17 @@ namespace MENU_Utils {
                         thirdRowMainMenu = String(gps.location.lat(), 4) + " " + String(gps.location.lng(), 4);
                     } else {
                         thirdRowMainMenu = String(Utils::getMaidenheadLocator(gps.location.lat(), gps.location.lng(), 8));
-                        thirdRowMainMenu += " LoRa[";
-                        switch (loraIndex) {
-                            case 0: thirdRowMainMenu += "Eu]"; break;
-                            case 1: thirdRowMainMenu += "PL]"; break;
-                            case 2: thirdRowMainMenu += "UK]"; break;
-                        }
+			if (!Config.doubleTx) {    
+                        	thirdRowMainMenu += " LoRa[";
+                        	switch (loraIndex) {
+                            		case 0: thirdRowMainMenu += "Eu]"; break;
+                            		case 1: thirdRowMainMenu += "PL]"; break;
+                            		case 2: thirdRowMainMenu += "UK]"; break;
+                        	}
+			} else {
+				thirdRowMainMenu = "";
+				thirdRowMainMenu += "LoRa Double Freq";
+			}
                     }
                     
                     for(int i = thirdRowMainMenu.length(); i < 18; i++) {
